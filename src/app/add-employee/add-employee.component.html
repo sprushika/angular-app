@@ -1,0 +1,16 @@
+<h3>Add employee details</h3>
+<form [formGroup]="addEmpForm" (ngSubmit)="onAddEmpSubmit()">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+        <label>Gender</label>
+        <input type="text" class="form-control" formControlName="gender" placeholder="Enter Gender">
+    </div>
+    <div class="form-group">
+        <label>Role</label>
+        <input type="text" class="form-control" formControlName="role" placeholder="Enter Role">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

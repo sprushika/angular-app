@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between mb-3 align-items-center">
+      <h3 class="mb-0">Employees Data</h3>
+      <button class="btn btn-primary" (click)="addEmployee()">+ Add Employees</button>
+  </div>
+  <table class="table table-bordered">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Role</th>
+        <th scope="col" class="text-center">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let emp of employees$ | async; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{emp.name}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.role}}</td>
+        <td class="text-center">
+          <button class="btn btn-warning mr-3" (click)="editEmp(i, emp)">Edit</button>
+          <button class="btn btn-danger" (click)='deleteEmp(i)'>Delete</button>
+        </td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+
+<p-sidebar [(visible)]="visibleAddSidebar" position="right">
+    <button class="btn btn-light rounded-circle close-btn" (click)="onCloseAddEmp()">x</button>
+    <app-addn-edit [mode]="'add'" (getAddFormStatus)="setAddSidebarVisibility($event)"></app-addn-edit>
+</p-sidebar>
+
+<p-sidebar [(visible)]="visibleEditSidebar" position="right">
+    <button class="btn btn-light rounded-circle close-btn" (click)="onCloseEditEmp()">x</button>
+    <app-addn-edit [mode]="'edit'" *ngIf="sendCurrentData" [getData]="sendCurrentData" (getEditFormStatus)="setEditSidebarVisibility($event)"></app-addn-edit>
+</p-sidebar>
+
+
+<!-- <p-sidebar [(visible)]="visibleAddSidebar" position="right">
+    <button class="btn btn-light rounded-circle close-btn" (click)="onCloseAddEmp()">x</button>
+    <app-add-employee (getAddFormStatus)="setAddSidebarVisibility($event)"></app-add-employee>
+</p-sidebar>
+<p-sidebar [(visible)]="visibleEditSidebar" position="right">
+    <button class="btn btn-light rounded-circle close-btn" (click)="onCloseEditEmp()">x</button>
+    <app-edit-employee *ngIf="sendCurrentData" [getData]="sendCurrentData" (getEditFormStatus)="setEditSidebarVisibility($event)"></app-edit-employee>
+</p-sidebar> -->
